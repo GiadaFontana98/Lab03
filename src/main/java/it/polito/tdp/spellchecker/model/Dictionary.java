@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class Dictionary {
    
-	Set<String>dizionario= new HashSet<String>();
+	Set<String>dizionario;
 	//utente puo scegliere due lingue, io mi conservo nella stringa tutte le parole.
 	//ogni volta leggo la parola e la conservo, faccio le letture dal file.
 	
@@ -29,6 +29,8 @@ public class Dictionary {
 
 	public void loadDictionary(String language)
 	{
+		
+		dizionario= new HashSet<String>();
 		String l=null;
 	if(language.compareTo("English")==0)
 	{
@@ -47,6 +49,7 @@ public class Dictionary {
 			String word;
 			while ((word = br.readLine()) != null) {
 			// Aggiungere parola alla struttura dati
+				dizionario.add(word); 
 			}
 			br.close();
 			} catch (IOException e){
@@ -60,11 +63,11 @@ public class Dictionary {
 		List<String>paroleErrate= new LinkedList<String>();
 		testo=testo.toLowerCase(); //mi porto tutto il testo in minuscolo, cosi non ho problemi per svolgere la traduzione
 		testo.replaceAll("[.,\\/#!$%\\^&\\*;:{}=\\-_`~()\\[\\]\"]", "");
-		String [] parole=testo.split("");
+		String [] parole=testo.split(" ");
 		start=System.nanoTime();
 		for(String p : parole)
 		{
-			if(dizionario.contains(p.toLowerCase()))
+			if(!dizionario.contains(p))
 			{
 				paroleErrate.add(p);
 			}
