@@ -37,7 +37,7 @@ public class FXMLController {
 
     @FXML
     void check(ActionEvent event) {
-      model.loadDictionary(cmbLanguage.getPromptText());  //serve per stamparmi il risultato, prende quello che c'è nella cmb
+      model.loadDictionary(cmbLanguage.getValue());  //serve per stamparmi il risultato, prende quello che c'è nella cmb
       txtCorr.setText(""+model.spellCheckTest(txtTesto.getText()).size());
       txtErrori.setText(""+model.spellCheckTest(txtTesto.getText()).size());
       txtTempo.setText(""+model.getTemp());
